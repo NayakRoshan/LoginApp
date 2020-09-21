@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.loginapp.ui.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_newUserLoginDetailsFragment"
+            app:destination="@id/newUserLoginDetailsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newUserLoginDetailsFragment"
+        android:name="com.example.loginapp.ui.NewUserLoginDetailsFragment"
+        android:label="fragment_new_user_login_detail"
+        tools:layout="@layout/fragment_new_user_login_details">
+        <action
+            android:id="@+id/action_newUserLoginDetailsFragment_to_detailsFragment"
+            app:destination="@+id/detailsFragment"/>
+    </fragment>
+
+<!--    <fragment-->
+<!--        android:id="@+id/emailFragment"-->
+<!--        android:name="com.example.loginapp.ui.NewUserLoginDetailsFragment"-->
+<!--        android:label="fragment_email"-->
+<!--        tools:layout="@layout/fragment_new_user_login_details" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_emailFragment_to_passwordFragment"-->
+<!--            app:destination="@id/passwordFragment" />-->
+<!--    </fragment>-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/passwordFragment"-->
+<!--        android:name="com.example.loginapp.PasswordFragment"-->
+<!--        android:label="fragment_password"-->
+<!--        tools:layout="@layout/fragment_password" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_passwordFragment_to_detailsFragment"-->
+<!--            app:destination="@id/detailsFragment" />-->
+<!--        <argument android:name="email"/>-->
+<!--    </fragment>-->
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.loginapp.ui.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" >
+        <action
+            android:id="@+id/action_detailsFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="true"/>
+        <argument android:name="email"/>
+        <argument android:name="password"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.loginapp.ui.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_displayDetailsFragment"
+            app:destination="@id/displayDetailsFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/displayDetailsFragment"
+        android:name="com.example.loginapp.ui.DisplayDetailsFragment"
+        android:label="fragment_display_details"
+        tools:layout="@layout/fragment_display_details">
+        <argument android:name="name"/>
+        <argument android:name="phone"/>
+        <argument android:name="age"/>
+    </fragment>
+
+</navigation>
