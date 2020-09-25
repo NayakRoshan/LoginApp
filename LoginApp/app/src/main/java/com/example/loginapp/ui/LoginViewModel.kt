@@ -3,7 +3,7 @@ package com.example.loginapp.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.loginapp.localDb.UserDetails
+import com.example.loginapp.entity.UserDetails
 import com.example.loginapp.repository.UserDetailsRepository
 
 class LoginViewModel : ViewModel() {

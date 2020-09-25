@@ -1,4 +1,4 @@
-package com.example.loginapp.localDb
+package com.example.loginapp.entity
 
 import io.realm.RealmObject
 

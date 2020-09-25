@@ -1,6 +1,6 @@
 package com.example.loginapp.repository
 
-import com.example.loginapp.localDb.UserDetails
+import com.example.loginapp.entity.UserDetails
 import com.example.loginapp.localDb.RealmConfig
 import io.realm.Realm
 import io.realm.RealmConfiguration

@@ -6,13 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.loginapp.R
-import com.example.loginapp.localDb.UserDetails
-import com.example.loginapp.repository.UserDetailsRepository
 import kotlinx.android.synthetic.main.fragment_login.*
 
 class LoginFragment : Fragment() {
