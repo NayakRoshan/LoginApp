@@ -8,6 +8,8 @@ import io.realm.RealmConfiguration
 class UserDetailsRepository {
 
     private val realmInstance : Realm = Realm.getInstance(RealmConfig.getRealmConfiguration() as RealmConfiguration)
+    private val EMAIL_FIELD : String = "email"
+    private val PASSWORD_FIELD : String = "password"
 
     fun writeUserDetails(
         email : String,
@@ -18,18 +20,20 @@ class UserDetailsRepository {
     ) {
         realmInstance.executeTransaction {
             val userDetails = it.createObject(UserDetails::class.java)
-            userDetails.email = email
-            userDetails.password = password
-            userDetails.name = name
-            userDetails.phone = phone
-            userDetails.age = age
+            userDetails.apply {
+                this.email = email
+                this.password = password
+                this.name = name
+                this.phone = phone
+                this.age = age
+            }
         }
     }
 
     fun readUserDetails(email : String, password: String) : UserDetails? {
         return realmInstance.where(UserDetails::class.java)
-            .equalTo("email", email)
-            .and().equalTo("password", password).findFirst()
+            .equalTo(EMAIL_FIELD, email)
+            .and().equalTo(PASSWORD_FIELD, password).findFirst()
     }
 
     fun closeRealm() {

@@ -6,10 +6,11 @@ class RealmConfig {
 
     companion object {
         private var realmConfiguration: RealmConfiguration? = null
+        private const val REALM_FILE_NAME = "Login.realm"
 
         private fun setConfiguration() {
             realmConfiguration = RealmConfiguration.Builder()
-                .name("Login.realm")
+                .name(REALM_FILE_NAME)
                 .schemaVersion(1)
                 .build()
         }
