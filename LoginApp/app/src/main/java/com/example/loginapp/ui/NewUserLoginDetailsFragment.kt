@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.loginapp.R
@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.fragment_new_user_login_details.*
 class NewUserLoginDetailsFragment : Fragment() {
 
     private lateinit var navController: NavController
+    private lateinit var signUpViewModel: SignUpViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,7 +25,12 @@ class NewUserLoginDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         navController = Navigation.findNavController(view)
-        goToDetails.setOnClickListener(goToPasswordFragmentListener)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        signUpViewModel = ViewModelProvider(requireActivity()).get(SignUpViewModel::class.java)
+        setGoToDetailsButtonListener()
     }
 
     private val goToPasswordFragmentListener = View.OnClickListener {
@@ -32,12 +38,17 @@ class NewUserLoginDetailsFragment : Fragment() {
         val userEnteredPassword : String = enterPassword.text.toString()
 
         if (!userEnteredEmail.endsWith(".com", false)) {
-            enterEmail.error = "Invalid Email."
+            enterEmail.error = resources.getString(R.string.email_error)
         } else if (userEnteredPassword == "") {
-            enterPassword.error = "Password too weak."
+            enterPassword.error = resources.getString(R.string.password_error)
         } else {
-            val bundle: Bundle = bundleOf("email" to userEnteredEmail, "password" to userEnteredPassword)
-            navController.navigate(R.id.action_newUserLoginDetailsFragment_to_detailsFragment, bundle)
+            signUpViewModel.setUserEmail(userEnteredEmail)
+            signUpViewModel.setUserPassword(userEnteredPassword)
+            navController.navigate(R.id.action_newUserLoginDetailsFragment_to_detailsFragment)
         }
+    }
+
+    private fun setGoToDetailsButtonListener() {
+        goToDetails.setOnClickListener(goToPasswordFragmentListener)
     }
 }

@@ -10,4 +10,13 @@
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="sign_in">Sign In</string>
+    <string-array name="age_values">
+        <item>10 to 20</item>
+        <item>20 to 30</item>
+        <item>30 to 40</item>
+        <item>40 to 50</item>
+        <item>50+</item>
+    </string-array>
+    <string name="email_error">Invalid Email.</string>
+    <string name="password_error">Password too weak.</string>
 </resources>

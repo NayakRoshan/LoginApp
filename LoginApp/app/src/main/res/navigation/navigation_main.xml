@@ -28,27 +28,6 @@
             app:destination="@+id/detailsFragment"/>
     </fragment>
 
-<!--    <fragment-->
-<!--        android:id="@+id/emailFragment"-->
-<!--        android:name="com.example.loginapp.ui.NewUserLoginDetailsFragment"-->
-<!--        android:label="fragment_email"-->
-<!--        tools:layout="@layout/fragment_new_user_login_details" >-->
-<!--        <action-->
-<!--            android:id="@+id/action_emailFragment_to_passwordFragment"-->
-<!--            app:destination="@id/passwordFragment" />-->
-<!--    </fragment>-->
-
-<!--    <fragment-->
-<!--        android:id="@+id/passwordFragment"-->
-<!--        android:name="com.example.loginapp.PasswordFragment"-->
-<!--        android:label="fragment_password"-->
-<!--        tools:layout="@layout/fragment_password" >-->
-<!--        <action-->
-<!--            android:id="@+id/action_passwordFragment_to_detailsFragment"-->
-<!--            app:destination="@id/detailsFragment" />-->
-<!--        <argument android:name="email"/>-->
-<!--    </fragment>-->
-
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.loginapp.ui.DetailsFragment"
@@ -59,8 +38,6 @@
             app:destination="@id/mainFragment"
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="true"/>
-        <argument android:name="email"/>
-        <argument android:name="password"/>
     </fragment>
 
     <fragment
@@ -79,10 +56,6 @@
         android:id="@+id/displayDetailsFragment"
         android:name="com.example.loginapp.ui.DisplayDetailsFragment"
         android:label="fragment_display_details"
-        tools:layout="@layout/fragment_display_details">
-        <argument android:name="name"/>
-        <argument android:name="phone"/>
-        <argument android:name="age"/>
-    </fragment>
+        tools:layout="@layout/fragment_display_details"/>
 
 </navigation>

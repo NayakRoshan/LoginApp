@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.loginapp.R
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_login.*
 class LoginFragment : Fragment() {
 
     private lateinit var navController: NavController
+    private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,29 +28,29 @@ class LoginFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        navController = Navigation.findNavController(view) //why pass view?
-        signIn.setOnClickListener(signInButtonListener)
+        navController = Navigation.findNavController(view)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        loginViewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
+        setSignInButtonListener()
     }
 
     private val signInButtonListener = View.OnClickListener {
         val emailEntered : String = email.text.toString()
         val passwordEntered : String = password.text.toString()
 
-        val userDetailsRepository =
-            UserDetailsRepository()
-        val userDetails : UserDetails? = userDetailsRepository.readUserDetails(emailEntered, passwordEntered)
-
+        val userDetails = loginViewModel.readFromDatabase(emailEntered, passwordEntered)
         if (userDetails == null) {
             Toast.makeText(requireActivity(), "Wrong Email or Password.", Toast.LENGTH_SHORT).show()
-            //activity and requireActivity.
         } else {
-            val bundle : Bundle = bundleOf(
-                "name" to userDetails.name,
-                "phone" to userDetails.phone,
-                "age" to userDetails.age
-            )
-            navController.navigate(R.id.action_loginFragment_to_displayDetailsFragment, bundle)
+            navController.navigate(R.id.action_loginFragment_to_displayDetailsFragment)
         }
+    }
+
+    private fun setSignInButtonListener() {
+        signIn.setOnClickListener(signInButtonListener)
     }
 
 }

@@ -24,8 +24,15 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         navController = Navigation.findNavController(view)
+        setSignUpButtonListener()
+        setLoginButtonListener()
+    }
 
+    private fun setSignUpButtonListener() {
         signUp.setOnClickListener { navController.navigate(R.id.action_mainFragment_to_newUserLoginDetailsFragment) }
+    }
+
+    private fun setLoginButtonListener() {
         login.setOnClickListener { navController.navigate(R.id.action_mainFragment_to_loginFragment) }
     }
 }
