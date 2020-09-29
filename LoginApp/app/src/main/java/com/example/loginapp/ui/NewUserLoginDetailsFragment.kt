@@ -20,16 +20,12 @@ class NewUserLoginDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        signUpViewModel = ViewModelProvider(requireActivity()).get(SignUpViewModel::class.java)
         return inflater.inflate(R.layout.fragment_new_user_login_details, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         navController = Navigation.findNavController(view)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        signUpViewModel = ViewModelProvider(requireActivity()).get(SignUpViewModel::class.java)
         setGoToDetailsButtonListener()
     }
 

@@ -17,12 +17,11 @@ class DisplayDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        loginViewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
         return inflater.inflate(R.layout.fragment_display_details, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        loginViewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setViewsText()
     }
 
