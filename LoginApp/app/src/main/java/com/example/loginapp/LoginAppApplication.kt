@@ -3,7 +3,7 @@ package com.example.loginapp
 import android.app.Application
 import io.realm.Realm
 
-class MyApplication : Application() {
+class LoginAppApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
