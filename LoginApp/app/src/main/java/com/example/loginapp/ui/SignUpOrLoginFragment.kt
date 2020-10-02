@@ -10,7 +10,7 @@ import androidx.navigation.Navigation
 import com.example.loginapp.R
 import kotlinx.android.synthetic.main.fragment_main.*
 
-class MainFragment : Fragment() {
+class SignUpOrLoginFragment : Fragment() {
 
     private lateinit var navController: NavController
 
