@@ -21,16 +21,12 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        loginViewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         navController = Navigation.findNavController(view)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        loginViewModel = ViewModelProvider(requireActivity()).get(LoginViewModel::class.java)
         setSignInButtonListener()
     }
 
