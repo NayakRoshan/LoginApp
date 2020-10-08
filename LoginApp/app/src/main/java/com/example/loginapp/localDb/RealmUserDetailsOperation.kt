@@ -6,7 +6,7 @@ import io.realm.RealmConfiguration
 
 object RealmUserDetailsOperation {
 
-    private val realmInstance : Realm = Realm.getInstance(RealmConfig.getRealmConfiguration() as RealmConfiguration)
+    private var realmInstance : Realm = Realm.getInstance(RealmConfig.getRealmConfiguration() as RealmConfiguration)
     private val EMAIL_FIELD : String = "email"
     private val PASSWORD_FIELD : String = "password"
 
@@ -17,6 +17,9 @@ object RealmUserDetailsOperation {
         phone : String,
         age : String
     ) {
+        if (realmInstance.isClosed) {
+            realmInstance = Realm.getInstance(RealmConfig.getRealmConfiguration() as RealmConfiguration)
+        }
         realmInstance.executeTransaction {
             val userDetails = it.createObject(UserDetails::class.java)
             userDetails.apply {
@@ -30,6 +33,9 @@ object RealmUserDetailsOperation {
     }
 
     fun readUserDetailsFromRealm(email : String, password: String) : UserDetails? {
+        if (realmInstance.isClosed) {
+            realmInstance = Realm.getInstance(RealmConfig.getRealmConfiguration() as RealmConfiguration)
+        }
         return realmInstance.where(UserDetails::class.java)
             .equalTo(EMAIL_FIELD, email)
             .and().equalTo(PASSWORD_FIELD, password).findFirst()
