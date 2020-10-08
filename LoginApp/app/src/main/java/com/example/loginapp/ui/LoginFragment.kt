@@ -40,7 +40,7 @@ class LoginFragment : Fragment() {
 
         val userDetails = loginViewModel.readFromDatabase(emailEntered, passwordEntered)
         if (userDetails == null) {
-            Toast.makeText(requireActivity(), "Wrong Email or Password.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireActivity(), resources.getString(R.string.login_error), Toast.LENGTH_SHORT).show()
         } else {
             navController.navigate(R.id.action_loginFragment_to_displayDetailsFragment)
         }

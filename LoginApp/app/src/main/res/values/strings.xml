@@ -19,4 +19,5 @@
     </string-array>
     <string name="email_error">Invalid Email.</string>
     <string name="password_error">Password too weak.</string>
+    <string name="login_error">Wrong Email or Password.</string>
 </resources>
